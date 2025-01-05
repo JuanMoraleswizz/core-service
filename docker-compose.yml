@@ -1,0 +1,18 @@
+services:
+  db:
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: reto
+    ports:
+      - "13336:3306"
+  rabbitmq:
+    image: rabbitmq:management
+    container_name: rabbitmq
+    environment:
+      - RABBITMQ_DEFAULT_USER=reto
+      - RABBITMQ_DEFAULT_PASS=retopass
+    ports:
+      - "5672:5672"
+      - "15672:15672"
