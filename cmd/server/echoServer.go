@@ -49,7 +49,7 @@ func (s *server) Start() {
 func (s *server) initializeCockroachHttpHandler() {
 	// Initialize all repositories
 	userRepository := repository.NewUserMariadbRepository(s.db)
-	followRepository := repository.NewFollowMariadbRepository(s.db)
+	followRepository := repository.NewFollowMariadbRepository(s.db, &s.rabbit)
 	tweetRepository := repository.NewTweetMariadbRepository(s.db, s.rabbit)
 
 	// Initialize all usecases

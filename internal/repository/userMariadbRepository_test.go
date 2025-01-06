@@ -53,7 +53,7 @@ func TestUserMariadbRepository_Create(t *testing.T) {
 			setupMock: func(mock sqlmock.Sqlmock) {
 				mock.ExpectBegin()
 				mock.ExpectExec("INSERT INTO `users`").
-					WithArgs("testuser"). // ajusta los argumentos según los campos de tu entidad User
+					WithArgs("testuser").
 					WillReturnResult(sqlmock.NewResult(1, 1))
 				mock.ExpectCommit()
 			},
@@ -94,7 +94,6 @@ func TestUserMariadbRepository_Create(t *testing.T) {
 				assert.NoError(t, err)
 			}
 
-			// Verificar que todas las expectativas del mock se cumplieron
 			if err := mock.ExpectationsWereMet(); err != nil {
 				t.Errorf("hay expectativas sin cumplir: %s", err)
 			}
